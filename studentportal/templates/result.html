@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+studentportal.diu.edu.bd/#/result
+{% endblock title %}
+
+
+{% block css %}
+.resultpageHeading{
+background: rgb(224, 242, 241);
+text-align:center;
+font-size:24px;
+font-weight: 400;
+line-height: 32px;
+padding:10px 0;
+box-shadow: 0 1px 8px 0 rgb(0 0 0 / 20%), 0 3px 4px 0 rgb(0 0 0 / 14%), 0 3px 3px -2px rgb(0 0 0 / 12%);
+
+}
+
+
+.container {
+padding: 16px;
+display:flex;
+}
+.inputfields{
+width:43%;
+}
+/* Full-width input fields */
+input[type=text], select {
+width: 98%;
+padding: 15px;
+margin: 5px 0 22px 0;
+display: inline-block;
+border: none;
+border-bottom: 1px solid grey;
+background:none;
+
+}
+select{
+    margin-top:7px;
+}
+
+input[type=text]:focus, select:focus {
+
+outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+border: 1px solid #f1f1f1;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+background: rgb(255,87,34);
+color: rgb(255, 255, 255);
+border-radius:2px;
+padding: 8px 7px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+opacity: 0.9;
+font-size:14px;
+font-weight:bold;
+box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+}
+
+.registerbtn:hover {
+opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+
+.loginform{
+width:90%;
+margin:auto;
+margin-top:30px;
+
+}
+
+.profileinfo{
+    display:flex;
+
+}
+
+.studentinfo{
+    width:70%;
+    margin-right:5px;
+}
+.personal-info{
+    display:flex;
+   
+}
+.personal-info div{
+    width:50%;
+}
+.studentinfo, .gradingimage{
+    margin-bottom:20px;
+}
+.texts{
+    display:flex;
+    justify-content:space-evenly;
+}
+{% endblock css %}
+
+
+
+{% block body %}
+<div class="resultpageHeading">
+    Academic Result
+</div>
+
+<div class="w3-container resultform">
+    <div class="loginform">
+
+        <form action="" method="POST">{% csrf_token %}
+            <div class="container">
+                <div class="inputfields">
+                    <input type="text" placeholder="Student ID *" name="studid" id="email" required>
+
+                </div>
+                <div class="inputfields">
+                    <select name="semester">
+                        <option value="" disabled selected >Select Semester*</option>
+                        <option value="Fall 2019">Fall 2019</option>
+                        <option value="Fall 2021">Fall 2021</option>
+                        <option value="Spring 2022">Spring 2022</option>
+                      </select>
+
+
+                </div>
+
+                <div class="resultbutton">
+                    <button type="submit" class="registerbtn">
+                        <i class="fa fa-paper-plane ng-scope" style="font-size:17px;font-weight: bold;"></i> SHOW
+                        RESULT</button>
+                </div>
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="w3-container">
+
+    <div class="w3-panel w3-card profileinfo" style="background: white;width: 80%; margin: auto; margin-bottom: 10px">
+
+        <div class="studentinfo">
+            <p style="font-size: 18px;">Student Info</p>
+            <hr>
+            <div class="personal-info">
+                <div style="color: #666666;">
+                    <p>Program</p>
+                    <p>Name of Student</p>
+                    <p>Student ID</p>
+                    <p>Enrollment</p>
+                    <p>Batch</p>
+                </div>
+                <div>
+                    <p>{{user.profileinfo.dept}}</p>
+                    <p>{{user.profileinfo.first_name}}</p>
+                    <p>{{request.user}}</p>
+                    <p>{{user.profileinfo.enrollment}}</p>
+                    <p>{{user.profileinfo.batch}}</p>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="gradingimage">
+            <p style="font-size: 18px;">UGC Uniform Grading System</p>
+            <img src="https://i.ibb.co/yWSMqSj/Screenshot-2022-04-13-161755.jpg" alt="Screenshot-2022-04-13-161755" border="0">
+        </div>
+    </div>
+</div>
+
+<div class="w3-container w3-margin-bottom">
+    <div class="w3-panel w3-card" style="background: white;width: 80%; margin: auto; margin-bottom: 10px;margin-top: 10px;">
+        <p style="font-size: 18px;">Academic Result of:{{result.0.semester}}</p>
+
+        <table class="w3-table w3-striped w3-bordered w3-cyan w3-margin-bottom">
+            <tr>
+              <th style="background:#0097A7;color: white;">Course Code</th>
+              <th style="background:#0097A7;color: white;">Course Title</th>
+              <th style="background:#0097A7;color: white;">Credit</th>
+              <th style="background:#0097A7;color: white;">Grade</th>
+              <th style="background:#0097A7;color: white;">Grade Point</th>
+              
+            </tr>
+            
+            {% for x in result %}
+            <tr class="w3-light-blue">
+                <td>{{x.courseCode}}</td>
+                <td>{{x.courseTitle}}</td>
+                <td>{{x.credit}}</td>
+                <td>{{x.grade}}</td>
+                <td>{{x.gradepoint}}</td>
+              </tr>
+            {% endfor %}
+                
+            
+            <!-- <tr>
+                <td>CSE326</td>
+                <td>Data Mining and Machine Learning Lab</td>
+                <td>50</td>
+                <td>50</td>
+                <td>50</td>
+            </tr> -->
+           
+          </table>
+
+          <div class="texts">
+              <div >
+                <p style="font-weight: bold;color: purple;">Total Credit Requirement:12</p>
+              </div>
+              <div >
+                <p style="font-weight: bold;color: purple;">Total Credits Taken:{{cgpa.total_credit}}</p>
+              </div>
+              <div >
+                <p style="font-weight: bold;color: purple;">SGPA:{{cgpa.sgpa}}</p>
+              </div>
+          </div>
+
+    
+    </div>
+
+</div>
+
+
+
+{% endblock body %}

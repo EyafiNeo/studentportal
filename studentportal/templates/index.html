@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    studentportal.diu.edu.bd
+{% endblock title %}
+    
+{% block css %}
+.container {
+    padding: 16px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  input[type=text], input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid grey;
+    
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+   
+    outline: none;
+  }
+  
+  /* Overwrite default styles of hr */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  /* Set a style for the submit button */
+  .registerbtn {
+    background: rgb(0, 137, 123); 
+    color: rgb(255, 255, 255);
+    border-radius:2px;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+  /* Add a blue text color to links */
+  a {
+    color: dodgerblue;
+  }
+  
+  /* Set a grey background color and center the text of the "sign in" section */
+  .signin {
+    
+    text-align: right;
+  }
+  .signin a{
+  text-decoration:none;
+  }
+  .signin a:hover{
+  font-weight:bold;
+  }
+  .loginform{
+  width:30%;
+  margin:auto;
+  margin-top:30px;
+  box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+  }
+  .container img{
+      height:43px;
+      width:143px;
+  }
+  .mid-title{
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: .005em;
+    text-align: center; 
+    color: rgb(1, 87, 155);
+  }
+
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: rgb(178, 223, 219);
+    border:none;
+    
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color:grey;
+  }
+  
+  /* Change background color of buttons on hover */
+  
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    color:rgb(63,81,181);
+    border-bottom:2px solid rgb(0, 137, 123);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color:rgb(250,250,250);
+    border:none;
+  }
+  .tabcontent span{
+  font-weight:bold;
+  }
+  .tabitem{
+      width:50%;
+      margin:auto;
+      margin-top:20px;
+      margin-bottom:50px;
+      box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+  }
+{% endblock css %}
+
+
+{% block body %}
+
+<div class="loginform">
+    
+    <form action="login" method="POST">{% csrf_token %}
+      <div class="container">
+    
+        <center><img src="http://studentportal.diu.edu.bd/module/loginout/img/diulogo.png" alt=""></center><br>
+        <div class="mid-title">Student Portal Login</div>
+        <hr>
+        <input type="text" placeholder="Student ID *" name="uname" id="email" required>
+        
+        <input type="password" placeholder="Password *" name="psw" id="psw" required>
+    
+        
+        
+    
+        <button type="submit" class="registerbtn">
+            <i class="fa fa-sign-in" style="font-size:17px;font-weight: bold;"></i> &nbsp; LOGIN</button>
+      </div>
+      
+      <div class="container signin">
+        <a href="#">Forgot Password?</a>.</p>
+      </div>
+    </form>
+    </div>
+
+    <div class="tabitem">
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Are You New Student ?</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">What is Student Portal</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">How to Use Student Portal</button>
+      </div>
+      
+      <div id="London" class="tabcontent">
+        
+        <p>Please Click on <span> Forgot Password </span> link. Then a pop up window will be appeared, type your email provided by your department and click on send button. A password will be sent to your email.</p>
+      </div>
+      
+      <div id="Paris" class="tabcontent">
+        
+        <p>Welcome to the Daffodil International University Student Portal.The Daffodil International University Student Portal provides a single point of access to online university services and information for students.</p> 
+      </div>
+      
+      <div id="Tokyo" class="tabcontent">
+       
+        <p><span>Q1: How to Login?</span></p>
+        <p>Answer : Use Your Student Id (Provided by Daffodil International University) and Password</p>
+        <p><span>Q2: Forget password?</span></p>
+        <p>Answer : Click on Forgot Password button to insert your Email(Provided by Daffodil International University) then click on Send button. An Email delivered to your email. Check Your Email inbox and spam box. There is a link in the email. Click on that link to reset your password.</p>
+      </div>
+    </div>
+{% endblock body %}
+
+
+{% block js %}
+
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+    
+{% endblock js %}
+    

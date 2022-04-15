@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>
+        
+        {% block title %}
+            
+        {% endblock title %}
+            
+    </title>
+
+    <style>
+body {
+  font-family: "Lato", sans-serif;
+  margin:0;
+  padding:0;
+  background-color: #E3E6E3;
+}
+
+.sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #000046, #009688);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #1DE9B6;
+  background: linear-gradient(to right, #1d2046, #3e968a);
+  font-weight: bold;
+}
+
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  margin-left: 30px;
+ 
+  
+}
+
+.hamburger{
+    font-size: 25px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+
+#navbar {
+  overflow: hidden;
+  background: linear-gradient(45deg, rgb(0, 137, 123), rgb(0, 129, 191));
+}
+
+
+
+
+
+
+
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+.footer{
+    background: linear-gradient(to right, #000000, #434343);
+    padding: 10px;
+  text-align: center;
+  color: rgb(158, 158, 158);
+  font-weight: bold;
+}
+.nameid{
+  
+  display: flex;
+  margin-right: 30px;
+ 
+  background: none;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  
+}
+.name{
+  margin-right: 30px;
+}
+.logout a{
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+.logout a:hover{
+  font-weight: bold;
+  color: #1DE9B6;
+}
+.headerItems{
+  display: flex;
+  justify-content: space-between;
+}
+{% block css %}
+        
+    {% endblock css %}
+
+    </style>
+</head>
+<body>
+
+    <div id="navbar">
+        <div id="mySidepanel" class="sidepanel">
+            
+                
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+           
+            <a href="/dashboard1">Dashboard</a>
+            <a href="#">Log in</a>
+            <a href="/profile">Profile</a>
+            <a href="/result">Result</a>
+          </div>
+          <div class="headerItems">
+            <button class="openbtn" onclick="openNav()"><span class="hamburger"> ☰ </span>Student Portal</button> 
+            <div class="nameid">
+              
+              {% if user.is_authenticated %}
+              <p class="name">{{user.profileinfo.first_name}}({{request.user}})</p>
+              <p class="logout"><a href="/logout">Logout</a></p>
+              {% endif %}
+                
+              
+            </div>
+          </div>
+          
+      </div>
+        
+ 
+
+
+{% block body %}
+    
+{% endblock body %}
+    
+
+<div class="footer">
+    <h5>All Rights Reserved @ Daffodil International University</h5>
+</div>
+
+
+
+<script>
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+function openNav() {
+  document.getElementById("mySidepanel").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidepanel").style.width = "0";
+}
+
+
+
+{% block js %}
+    
+{% endblock js %}
+</script>
+</body>
+</html>
+
+
+    

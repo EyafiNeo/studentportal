@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+studentportal.diu.edu.bd/profile
+{% endblock title %}
+
+
+{% block css %}
+.profilepageHeading{
+background: rgb(224, 242, 241);
+text-align:center;
+font-size:24px;
+font-weight: 400;
+line-height: 32px;
+padding:10px 0;
+box-shadow: 0 1px 8px 0 rgb(0 0 0 / 20%), 0 3px 4px 0 rgb(0 0 0 / 14%), 0 3px 3px -2px rgb(0 0 0 / 12%);
+margin-bottom:10px;
+
+}
+
+.profileimg{
+    width:20%;
+}
+.profileimg img{
+    width:100%;
+    height:auto;
+}
+.profilecontent{
+display:flex;
+margin:auto;
+width:90%;
+margin-bottom:10px;
+}
+.profilecontent div{
+margin:10px;
+}
+.profileinfo{
+width:80%;
+height:auto;
+}
+hr{
+border-top:1px solid rgba(170,170,170,0.7);
+}
+
+
+.personal-info{
+display:flex;
+}
+.personal-info div{
+
+width:50%;
+}
+
+.leftcolumn{
+display:flex;
+}
+{% endblock css %}
+
+
+
+{% block body %}
+<div class="profilepageHeading">
+    Profile of {{user.profileinfo.first_name}}
+</div>
+
+
+
+<div class="w3-container profilecontent">
+    <div class="profileimg">
+        <img src="{{user.profileinfo.profilepic.url}}" 
+            alt="">
+    </div>
+    <div class="w3-panel w3-card profileinfo" style="background: white;">
+        <center style="font-size: 22px;margin-top: 10px;">Personal</center>
+        <hr>
+        <div class="personal-info">
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>First Name</p>
+                    <p>Middle Name</p>
+                    <p>Last Name</p>
+                    <p>Nick Name</p>
+                    <p>Date of Birth</p>
+                    <p>Place of Birth</p>
+                    <p>Gender</p>
+                    <p>Marital Status</p>
+                    <p>Blood Group</p>
+                    <p>Religion</p>
+                    <p>Nationality</p>
+                    <p>National ID</p>
+                </div>
+                <div>
+                    <p>{{user.profileinfo.first_name}}</p>
+                    <p>{{user.profileinfo.middle_name}}</p>
+                    <p>{{user.profileinfo.last_name}}</p>
+                    <p>{{user.profileinfo.nick_name}}</p>
+                    <p>{{user.profileinfo.date_of_birth}}</p>
+                    <p>{{user.profileinfo.place_of_birth}}</p>
+                    <p>{{user.profileinfo.gender}}</p>
+                    <p>{{user.profileinfo.marital_status}}</p>
+                    <p>{{user.profileinfo.blood_group}}</p>
+                    <p>{{user.profileinfo.religion}}</p>
+                    <p>{{user.profileinfo.nationality}}</p>
+                    <p>{{user.profileinfo.national_id}}</p>
+                </div>
+            </div>
+
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Passport No</p>
+                    <p>Social Network ID</p>
+                    <p>IM</p>
+                    <p>About You</p>
+                    <p>Mobile</p>
+                    <p>Present Mobile</p>
+                    <p>Parmanent Mobile</p>
+                    <p>Email</p>
+                    <p>Alternative Email</p>
+                </div>
+                <div>
+                    <p>{{user.profileinfo.passport_no}}</p>
+                    <p>{{user.profileinfo.social_network_id}}</p>
+                    <p>{{user.profileinfo.im}}</p>
+                    <p>{{user.profileinfo.about_you}}</p>
+                    <p>{{user.profileinfo.mobile}}</p>
+                    <p>{{user.profileinfo.present_mobile}}</p>
+                    <p>{{user.profileinfo.permanent_mobile}}</p>
+                    <p>{{user.profileinfo.email}}</p>
+                    <p>{{user.profileinfo.alternative_email}}</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <center style="font-size: 22px;margin-top: 10px;">Guardian Info</center>
+        <hr>
+        <div class="personal-info">
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Father's Name</p>
+                    <p>Father's Contact No</p>
+                    <p>Father's Occupation</p>
+                    <p>Father's Designation</p>
+                    <p>Father's Employer's Name</p>
+                    <p>Father's Annual Income</p>
+                    <p>Mother's Name</p>
+                    <p>Mother's Contact No</p>
+                    <p>Mother's Occupation</p>
+                </div>
+                <div>
+                    <p>{{user.profileinfo.father_name}}</p>
+                    <p>{{user.profileinfo.father_contact_no}}</p>
+                    <p>{{user.profileinfo.father_occupation}}</p>
+                    <p>{{user.profileinfo.father_designation}}</p>
+                    <p>{{user.profileinfo.father_employers_name}}</p>
+                    <p>{{user.profileinfo.father_eannual_income}}</p>
+                    <p>{{user.profileinfo.mother_name}}</p>
+                    <p>{{user.profileinfo.mother_contact_no}}</p>
+                    <p>{{user.profileinfo.mother_occupation}}</p>
+                </div>
+            </div>
+
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Mother's Designation</p>
+                    <p>Mother's Employer's Name</p>
+                    <p>Mother's Annual Income</p>
+                    <p>Parent's Address</p>
+                    <p>Local Guardian's Name</p>
+                    <p>Local Guardian's Contact no</p>
+                    <p>Relation with Local Guardian</p>
+                    <p>Local Guardian's Address</p>
+                    
+                </div>
+                <div>
+                    <p>{{user.profileinfo.mother_designation}}</p>
+                    <p>{{user.profileinfo.mother_employer_name}}</p>
+                    <p>{{user.profileinfo.mother_annual_income}}</p>
+                    <p>{{user.profileinfo.parents_address}}</p>
+                    <p>{{user.profileinfo.local_guardian_name}}</p>
+                    <p>{{user.profileinfo.local_guardian_contact_no}}</p>
+                    <p>{{user.profileinfo.relation_with_local_guardian}}</p>
+                    <p>{{user.profileinfo.local_guardian_address}}</p>
+                </div>
+            </div>
+
+        </div>
+        <center style="font-size: 22px;margin-top: 10px;">Present Address</center>
+        <hr>
+        <div class="personal-info">
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Address</p>
+                    <p>Post Office</p>
+                    <p>Police Station</p>
+                    <p>District/City</p>
+                    
+                </div>
+                <div>
+                    <p>{{user.profileinfo.present_address}}</p>
+                    <p>{{user.profileinfo.present_address_post_office}}</p>
+                    <p>{{user.profileinfo.present_address_police_station}}</p>
+                    <p>{{user.profileinfo.present_address_district}}</p>
+    
+                </div>
+            </div>
+
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Division</p>
+                    <p>Country</p>
+                    <p>Zip Code</p>
+                    
+                </div>
+                <div>
+                    <p>{{user.profileinfo.present_address_division}}</p>
+                    <p>{{user.profileinfo.present_address_country}}</p>
+                    <p>{{user.profileinfo.present_address_zipcode}}</p>
+                   
+                </div>
+            </div>
+
+        </div>
+        <center style="font-size: 22px;margin-top: 10px;">Permanent Address</center>
+        <hr>
+        <div class="personal-info">
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Address</p>
+                    <p>Post Office</p>
+                    <p>Police Station</p>
+                    <p>District/City</p>
+                    <p>Division/State</p>
+                    <p>Country</p>
+                    
+                </div>
+                <div>
+                    <p>{{user.profileinfo.permanent_address}}</p>
+                    <p>{{user.profileinfo.permanent_address_post_office}}</p>
+                    <p>{{user.profileinfo.permanent_address_police_station}}</p>
+                    <p>{{user.profileinfo.permanent_address_district}}</p>
+                    <p>{{user.profileinfo.permanent_address_division}}</p>
+                    <p>{{user.profileinfo.permanent_address_country}}</p>
+                    
+                </div>
+            </div>
+
+            <div class="leftcolumn">
+                <div style="color: #666666;">
+                    <p>Zip Code</p>
+                    <p>Hostel Address</p>
+                    <p>Mess Address</p>
+                    <p>Other Address</p>
+                    
+                </div>
+                <div>
+                    <p>{{user.profileinfo.permanent_address_zipcode}}</p>
+                    <p>{{user.profileinfo.hostel_address}}</p>
+                    <p>{{user.profileinfo.mess_address}}</p>
+                    <p>{{user.profileinfo.other_address}}</p>
+                
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

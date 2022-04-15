@@ -1,0 +1,611 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+studentportal.diu.edu.bd/#/dashboard1
+{% endblock title %}
+
+
+{% block css %}
+    
+    .dashboardHeading{
+        background: rgb(224, 242, 241);
+        text-align:center;
+        font-size:24px;
+        font-weight: 400;
+    line-height: 32px;
+    padding:10px 0;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0 / 20%), 0 3px 4px 0 rgb(0 0 0 / 14%), 0 3px 3px -2px rgb(0 0 0 / 12%);
+    margin-bottom:10px;
+   
+    }
+
+    .payment-cards{
+        display:flex;
+        
+    }
+    .card1, .card2, .card3, .card4{
+        width:25%;
+        padding:5px 10px;
+    }
+    .card2, .card3, .card4{
+        margin-left:10px;
+    }
+    .card1{
+        background: rgb(66, 165, 245);
+    }
+    .card2{
+       
+        background: rgb(126, 87, 194);
+    }
+    .card3{
+        background: rgb(239, 83, 80);
+    }
+    .card4{
+        background: rgb(38, 198, 218);
+    }
+    .cardtext{
+        text-align:right;
+        color:white;
+    }
+    .fa-5x{
+        opacity:.1;
+        font-size:5em;
+    }
+    .payable{
+        font-size:28px;
+    }
+    hr{
+        border-top:1px solid rgba(170,170,170,0.7);
+    }
+
+
+    .tableContent{
+        display:flex;
+    }
+
+
+    .semestergpa{
+        margin-bottom:10px;
+        
+    }
+
+.sgpatext{
+    margin-top:150px;
+    transform:rotate(-90deg);
+    margin-left:10px;
+    position:absolute;
+    color: #666666;
+}
+.graph {
+	margin-bottom:1em;
+  font:normal 100%/150% arial,helvetica,sans-serif;
+  
+}
+
+
+.graph tbody th {
+	text-align:right;
+}
+
+@supports (display:grid) {
+
+	@media (min-width:32em) {
+
+		.graph {
+			display:block;
+      width:30vw;
+      height:300px;
+		}
+
+		.graph caption {
+			display:block;
+		}
+
+		.graph thead {
+			display:none;
+		}
+
+		.graph tbody {
+			position:relative;
+			display:grid;
+			grid-template-columns:repeat(auto-fit, minmax(2em, 1fr));
+			column-gap:2.5%;
+			align-items:end;
+			height:100%;
+			margin:-1em 0 1em 2.8em;
+			padding:0 1em;
+			border-bottom:2px solid rgba(0,0,0,0.5);
+			background:repeating-linear-gradient(
+				360deg,
+				rgba(170,170,170,0.7) 0,
+				rgba(170,170,170,0.7) 1px,
+				transparent 1px,
+				transparent 20%
+			);
+		}
+
+		.graph tbody:before,
+		.graph tbody:after {
+			position:absolute;
+			left:-3.2em;
+			width:2.8em;
+			text-align:right;
+			font:bold 80%/120% arial,helvetica,sans-serif;
+		}
+
+		.graph tbody:before {
+			content:"4";
+			top:4em;
+		}
+	
+.graph .paymentgraph:before{
+    content:"20k";
+    top:4em;
+}
+		.graph tbody:after {
+			content:"0";
+			bottom:-0.6em;
+		}
+
+		.graph tr {
+			position:relative;
+			display:block;
+		}
+
+		.graph tr:hover {
+			z-index:999;
+		}
+
+		.graph th,
+		.graph td {
+			display:block;
+			text-align:center;
+		}
+
+		.graph tbody th {
+			position:absolute;
+			top:-2em;
+			left:0;
+			width:40%;
+			font-weight:normal;
+			text-align:center;
+      white-space:nowrap;
+			text-indent:0;
+			transform:rotate(-45deg);
+		}
+
+		.graph tbody th:after {
+			content:"";
+		}
+
+		.graph td {
+			width:70px;
+			height:100%;
+			background:rgb(124, 181, 236);
+			
+			transition:background 0.5s;
+		}
+
+		.graph tr:hover td {
+			opacity:0.7;
+		}
+
+		.graph td span {
+			overflow:hidden;
+			position:absolute;
+			left:50%;
+			top:50%;
+			width:0;
+			padding:0.5em 0;
+			margin:-1em 0 0;
+			font:normal 85%/120% arial,helvetica,sans-serif;
+/* 			background:white; */
+/* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+			font-weight:bold;
+			opacity:0;
+			transition:opacity 0.5s;
+      color:white;
+		}
+
+		.toggleGraph:checked + table td span,
+		.graph tr:hover td span {
+			width:4em;
+			margin-left:-2em; /* 1/2 the declared width */
+			opacity:1;
+		}
+
+
+
+    
+
+
+	} /* min-width:32em */
+
+}
+
+.semesternames{
+    display: flex;
+    margin-left:60px;
+    margin-bottom:10px;
+  }
+  .semesternames div{
+   
+    color: #666666;
+      cursor: default;
+      font-size: 11px;
+      fill: #666666;
+      width: 120px;
+      text-overflow: clip;
+  }
+  .feenames{
+    display: flex;
+    margin-left: 50px;
+    margin-top: 5px;
+    margin-bottom:30px;
+  }
+  .feenames div{
+    
+    color: #666666;
+      cursor: default;
+      font-size: 11px;
+      fill: #666666;
+      height:auto;
+      width:60px;
+      text-overflow: clip;
+      transform:rotate(-45deg);
+  }
+.infodropsem{
+  display:flex;
+  margin-bottom:20px;
+  
+}
+.infodropsem div{
+  width:50%;
+  margin:5px;
+  
+}
+  .basicinfo{
+    display:flex;
+    justify-content:space-between;
+  }
+{% endblock css %}
+
+
+{% block body %}
+    <div class="dashboardHeading">
+        Student Dashboard
+    </div>
+    <div class="w3-container payment-cards">
+        <div class="w3-panel w3-card card1">
+            <div class="cardtext">
+                <div class="payable">৳ {{payment.total_payable}}</div>
+                <div class="total">Total Payable</div>
+            </div>
+            <i class="fa fa-money fa-5x"></i>
+        </div>
+        <div class="w3-panel w3-card card2">
+            <div class="cardtext">
+                <div class="payable">৳ {{payment.total_paid}}</div>
+                <div class="total">Total Paid</div>
+            </div>
+            <i class="fa fa-money fa-5x"></i>
+        </div>
+        <div class="w3-panel w3-card card3">
+            <div class="cardtext">
+                <div class="payable">৳ {{payment.total_due}}</div>
+                <div class="total">Total Due</div>
+            </div>
+            <i class="fa fa-money fa-5x"></i>
+        </div>
+        <div class="w3-panel w3-card card4">
+            <div class="cardtext">
+                <div class="payable">৳ {{payment.total_others}}</div>
+                <div class="total">Total Others</div>
+            </div>
+            <i class="fa fa-money fa-5x"></i>
+        </div>
+    </div>
+
+
+    <div class="semestergpa w3-container">
+        <div class="w3-panel w3-card" style="background: white;">
+            <div class="sgpa">
+                <center style="font-size: 18px;margin-top: 10px;">Payment Scheme</center>
+                <center style="font-size: 12px;color: #666666;;">Daffodil International University</center>
+                <hr>
+            </div>
+            <div class="tableContent">
+                <div class="sgpatext" style="margin-left:-20px;">Scheme(taka)</div>
+                <div class="tableGraph">
+                    <table class="graph" style="width: 90vw;">
+    
+                        <thead>
+                          <tr>
+                            <!-- <th scope="col">Item</th>
+                            <th scope="col">Percent</th> -->
+                          </tr>
+                        </thead><tbody class="paymentgraph">
+                          <tr style="height:60%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">15000.00</th>
+                            <td style="width: 30px;"><span>4</span></td>
+                          </tr>
+                          <tr style="height:18%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">4500.00</th>
+                            <td style="width: 30px;background: rgb(67, 67, 72);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:6%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">1500.00</th>
+                            <td style="width: 30px;background: rgb(144, 237, 125);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:8%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">2000.00</th>
+                            <td style="width: 30px;background: rgb(247, 163, 92);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:10%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">3000.00</th>
+                            <td style="width: 30px;background: rgb(128, 133, 233);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:2%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">1000.00</th>
+                            <td style="width: 30px;background: rgb(241, 92, 128);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:22%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">5500.00</th>
+                            <td style="width: 30px;background: rgb(228, 211, 84);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:17%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">4000.00</th>
+                            <td style="width: 30px; background: rgb(43, 144, 143);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:2%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">1000.00</th>
+                            <td style="width: 30px; background: rgb(244, 91, 91);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:17%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">4000.00</th>
+                            <td style="width: 30px;background: rgb(145, 232, 225);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:17.5%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">4300.00</th>
+                            <td style="width: 30px;background: rgb(124, 181, 236);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:15%">
+                            <th scope="row" style="font-size: 12px;transform: rotate(-90deg);">4150.00</th>
+                            <td style="width: 30px;background:rgb(92, 92, 97);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:16%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">4200.00</th>
+                            <td style="width: 30px;background: rgb(169, 255, 150);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:14.5%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">4100.00</th>
+                            <td style="width: 30px;background: rgb(247, 163, 92)"><span>4</span></td>
+                          </tr>
+                          <tr style="height:14.5%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">4075.00</th>
+                            <td style="width: 30px;background: rgb(128, 133, 233);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:13%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">3200.00</th>
+                            <td style="width: 30px;background: rgb(241, 92, 128);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:16%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">4300.00</th>
+                            <td style="width: 30px;background: rgb(228, 211, 84);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:16%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">4300.00</th>
+                            <td style="width: 30px;background: rgb(43, 144, 143);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:13%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">3200.00</th>
+                            <td style="width: 30px;background: rgb(244, 91, 91);"><span>4</span></td>
+                          </tr>
+                          <tr style="height:13%">
+                            <th scope="row"style="font-size: 12px;transform: rotate(-90deg);">3200.00</th>
+                            <td style="width: 30px;background: rgb(145, 232, 225);"><span>4</span></td>
+                          </tr>
+                         
+                         
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            
+            <div class="feenames">
+                <div>
+                  Admission Fee
+                </div>
+                <div>
+                  Campus Development Fee
+                </div>
+                <div>
+                 Extra Curricullam fee
+                </div>
+                <div>
+                  Lab Fee
+                </div>
+                <div>
+                  Library Fee
+                </div>
+                <div>
+                 Rover Scout & BNCC Fee
+                </div>
+                <div>
+                  Semester Fee
+                </div>
+                <div>
+                  Student Life Insurance
+                </div>
+                <div>
+                  Smart Card
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                <div>
+                  Tuition Fee
+                </div>
+                
+              </div>
+        </div>
+    </div>
+
+
+    <div class="semestergpa w3-container">
+        <div class="w3-panel w3-card" style="background: white;">
+            <div class="sgpa">
+                <center style="font-size: 18px;margin-top: 10px;">Semester Wise SGPA</center>
+                <hr>
+            </div>
+            <div class="tableContent">
+                <div class="sgpatext">SGPA</div>
+                <div class="tableGraph">
+                    <table class="graph">
+        
+                        <thead>
+                          <tr>
+                            <!-- <th scope="col">Item</th>
+                            <th scope="col">Percent</th> -->
+                       </tr>
+                        </thead><tbody>
+                          <tr style="height:46.2%">
+                            <th scope="row">{{sgpa.fall_19}}</th>
+                            <td><span>{{sgpa.fall_19}}</span></td>
+                          </tr>
+                          <tr style="height:60%">
+                            <th scope="row">{{sgpa.fall_21}}</th>
+                            <td><span>{{sgpa.fall_21}}</span></td>
+                          </tr>
+                          <tr style="height:65%">
+                            <th scope="row">{{sgpa.spring_22}}</th>
+                            <td><span>{{sgpa.spring_22}}</span></td>
+                          </tr>
+                         
+                          
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            
+            
+              <div class="semesternames">
+                <div>
+                  Fall 2019
+                </div>
+                <div>
+                    Fall 2021
+                </div>
+                <div>
+                  Spring 2022
+                </div>
+                
+              </div>
+        </div>
+    </div>
+
+    <div class="w3-container infodropsem">
+      <div class="w3-panel w3-card" style="background: white;">
+        <p style="font-size:20px ;font-weight: 500;">Student Basic Info</p><hr>
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Name
+          </div>
+          <div>
+            {{user.profileinfo.first_name}}
+          </div>
+        </div>
+              
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Birth Date
+          </div>
+          <div>
+            {{user.profileinfo.date_of_birth}}
+          </div>
+        </div>
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Mobile
+          </div>
+          <div>
+            {{user.profileinfo.mobile}}
+          </div>
+        </div>
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Blood group
+          </div>
+          <div>
+            {{user.profileinfo.blood_group}}
+          </div>
+        </div>
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Father's Name
+          </div>
+          <div>
+            {{user.profileinfo.father_name}}
+          </div>
+        </div>
+        <div class="basicinfo">
+          <div style="color:#666666">
+            Mother's Name
+          </div>
+          <div>
+            {{user.profileinfo.mother_name}}
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <a href="/profile/" style="text-decoration: none;color: purple;">More Details ></a>
+        </div>
+      </div>
+      
+      <div class="w3-panel w3-card" style="background: white;">
+        <p style="font-size:20px ;font-weight: 500;">Dropped Semester List</p><hr>
+        <div class="basicinfo">
+          <div style="font-weight: bold;">
+            Semester
+          </div>
+          <div style="font-weight: bold;">
+            Cause
+          </div>
+          <div style="font-weight: bold;">
+            Date
+          </div>
+        </div>
+        <hr>
+      </div>
+     
+
+    </div>
+{% endblock body %}
+    
